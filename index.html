@@ -1,0 +1,887 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="New Waves Hair & Tattoos - Hair styling, creative tattoos and personal expression.">
+    <title>New Waves Hair & Tattoos</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #101010;
+            --panel: #1b1b1b;
+            --text: #ffffff;
+            --accent: #d4ff48;
+            --muted: #b6b6b6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button, input, select, textarea {
+            font: inherit;
+        }
+
+        button, .button {
+            cursor: pointer;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: auto;
+        }
+
+        /* Navigation */
+
+        header {
+            background: rgba(16, 16, 16, 0.96);
+            border-bottom: 1px solid #303030;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: #ddd;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .menu-button {
+            display: none;
+            background: transparent;
+            color: white;
+            border: 1px solid #555;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        /* Buttons */
+
+        .button {
+            display: inline-block;
+            background: var(--accent);
+            color: #101010;
+            padding: 13px 23px;
+            border: 0;
+            border-radius: 5px;
+            font-weight: 800;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .button-outline {
+            background: transparent;
+            color: white;
+            border: 1px solid #777;
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 620px;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(90deg, #101010 8%, rgba(16,16,16,.87) 48%, rgba(16,16,16,.22)),
+                url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1800&q=85")
+                center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 680px;
+            padding: 100px 0;
+        }
+
+        .eyebrow {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: clamp(42px, 7vw, 82px);
+            line-height: 1.02;
+            letter-spacing: -3px;
+            margin-bottom: 24px;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            color: #dedede;
+            max-width: 520px;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* General sections */
+
+        section {
+            padding: 85px 0;
+            scroll-margin-top: 76px;
+        }
+
+        .section-heading {
+            margin-bottom: 38px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(30px, 5vw, 46px);
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            max-width: 600px;
+        }
+
+        /* Services */
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--panel);
+            border: 1px solid #303030;
+            border-radius: 10px;
+            padding: 28px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .service-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .service-link {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Gallery */
+
+        .gallery {
+            background: #171717;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 9px;
+            background: #252525;
+            min-height: 280px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-caption {
+            padding: 14px;
+            font-weight: bold;
+        }
+
+        /* About */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            margin: 18px 0;
+        }
+
+        .feature {
+            margin: 12px 0;
+        }
+
+        .feature span {
+            color: var(--accent);
+            margin-right: 8px;
+        }
+
+        /* Booking */
+
+        .booking {
+            background: #171717;
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 45px;
+        }
+
+        .contact-info p {
+            color: var(--muted);
+            margin: 12px 0;
+        }
+
+        .booking-form {
+            background: var(--panel);
+            padding: 28px;
+            border: 1px solid #333;
+            border-radius: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 7px;
+            color: #ddd;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            background: #111;
+            border: 1px solid #444;
+            border-radius: 5px;
+            color: white;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: 1px solid var(--accent);
+            border-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .booking-form .button {
+            width: 100%;
+        }
+
+        .form-message {
+            margin-top: 16px;
+            color: var(--accent);
+            font-size: 14px;
+        }
+
+        /* Footer */
+
+        footer {
+            padding: 28px 0;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        footer p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 18px;
+            font-size: 13px;
+        }
+
+        /* Responsive design */
+
+        @media (max-width: 800px) {
+            .menu-button {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 76px;
+                left: 0;
+                right: 0;
+                background: #171717;
+                padding: 24px 5%;
+                flex-direction: column;
+                align-items: flex-start;
+                border-bottom: 1px solid #333;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .hero {
+                min-height: 530px;
+                background-position: 60% center;
+            }
+
+            .services-grid,
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid,
+            .booking-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 330px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .services-grid,
+            .gallery-grid,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item img {
+                height: 280px;
+            }
+
+            h1 {
+                letter-spacing: -1.5px;
+            }
+
+            .booking-form {
+                padding: 20px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav class="container">
+        <a class="logo" href="#home">
+            NEW WAVES<span>.</span>
+        </a>
+
+        <button class="menu-button"
+                id="menuButton"
+                aria-expanded="false"
+                aria-controls="navLinks">
+            Menu ☰
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#about">About</a>
+            <a href="#booking">Contact</a>
+            <a href="#booking" class="button">Book a Visit</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="eyebrow">Hair • Tattoos • Individuality</div>
+
+                <h1>
+                    YOUR STYLE.<br>
+                    YOUR RULES.<br>
+                    <span>NEW WAVES.</span>
+                </h1>
+
+                <p>
+                    More than a salon. More than a tattoo studio.
+                    A space where creativity meets confidence
+                    and your individuality comes first.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#booking" class="button">Book Your Appointment ↗</a>
+                    <a href="#services" class="button button-outline">
+                        Explore Services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-heading">
+                <div class="eyebrow">What We Do</div>
+                <h2>Make Your Mark.</h2>
+                <p>
+                    From a fresh haircut to a meaningful tattoo,
+                    find the style that feels like you.
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <article class="service-card">
+                    <div class="service-icon">✂️</div>
+                    <h3>Haircuts & Styling</h3>
+                    <p>
+                        Modern cuts, classic styles and personalised
+                        looks designed around you.
+                    </p>
+                    <a class="service-link" href="#booking"
+                       data-service="Haircut & Styling">
+                        Book a haircut ↗
+                    </a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">◈</div>
+                    <h3>Creative Tattoos</h3>
+                    <p>
+                        Unique designs, fine details and custom artwork
+                        created to express your story.
+                    </p>
+                    <a class="service-link" href="#booking"
+                       data-service="Custom Tattoo">
+                        Plan your tattoo ↗
+                    </a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">✦</div>
+                    <h3>Personal Style</h3>
+                    <p>
+                        Get advice on your next look and explore
+                        creative ideas with our team.
+                    </p>
+                    <a class="service-link" href="#booking"
+                       data-service="Style Consultation">
+                        Talk to our team ↗
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-heading">
+                <div class="eyebrow">Our Work</div>
+                <h2>Art You Can Wear.</h2>
+                <p>
+                    Explore hair inspiration and tattoo artwork.
+                    Every style has a story.
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+                <article class="gallery-item">
+                    <img
+                        src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=80"
+                        alt="Barber styling a client's hair"
+                        loading="lazy">
+                    <div class="gallery-caption">Modern Barbering</div>
+                </article>
+
+                <article class="gallery-item">
+                    <img
+                        src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=80"
+                        alt="Haircut and grooming"
+                        loading="lazy">
+                    <div class="gallery-caption">Fresh Cuts</div>
+                </article>
+
+                <article class="gallery-item">
+                    <img
+                        src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?auto=format&fit=crop&w=700&q=80"
+                        alt="Tattoo artwork"
+                        loading="lazy">
+                    <div class="gallery-caption">Custom Tattoos</div>
+                </article>
+
+                <article class="gallery-item">
+                    <img
+                        src="https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=700&q=80"
+                        alt="Tattoo artist working"
+                        loading="lazy">
+                    <div class="gallery-caption">Ink & Detail</div>
+                </article>
+
+                <article class="gallery-item">
+                    <img
+                        src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=700&q=80"
+                        alt="Professional barber tools"
+                        loading="lazy">
+                    <div class="gallery-caption">The Details</div>
+                </article>
+
+                <article class="gallery-item">
+                    <img
+                        src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=700&q=80"
+                        alt="Hair salon interior"
+                        loading="lazy">
+                    <div class="gallery-caption">Our Creative Space</div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container about-grid">
+            <div>
+                <img
+                    class="about-image"
+                    src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1000&q=85"
+                    alt="Contemporary salon interior"
+                    loading="lazy">
+            </div>
+
+            <div class="about-text">
+                <div class="eyebrow">About New Waves</div>
+                <h2 style="font-size: 42px; line-height: 1.15;">
+                    Your Vision.<br>Our Craft.
+                </h2>
+
+                <p>
+                    New Waves Hair & Tattoos is a creative space
+                    dedicated to self-expression, personal style
+                    and artistic detail.
+                </p>
+
+                <p>
+                    Whether you're changing your hairstyle or planning
+                    your next piece of body art, our goal is to help
+                    you feel confident in your own style.
+                </p>
+
+                <div class="feature">
+                    <span>✓</span> Personalised consultations
+                </div>
+                <div class="feature">
+                    <span>✓</span> Creative, individual designs
+                </div>
+                <div class="feature">
+                    <span>✓</span> A welcoming studio experience
+                </div>
+
+                <br>
+                <a href="#booking" class="button">Let's Create Something</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking" id="booking">
+        <div class="container booking-grid">
+            <div class="contact-info">
+                <div class="eyebrow">Get In Touch</div>
+                <h2 style="font-size: 42px; line-height: 1.15;">
+                    Ready for<br>Your Next Look?
+                </h2>
+
+                <p>
+                    Tell us what you have in mind.
+                    Send an appointment request and we can
+                    discuss your style and preferred date.
+                </p>
+
+                <p><strong>Studio:</strong> New Waves Hair & Tattoos</p>
+                <p><strong>Email:</strong> Add your studio email</p>
+                <p><strong>Phone:</strong> Add your contact number</p>
+                <p><strong>Address:</strong> Add your studio location</p>
+            </div>
+
+            <form class="booking-form" id="bookingForm">
+                <h3 style="font-size: 24px; margin-bottom: 22px;">
+                    Request an Appointment
+                </h3>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name"
+                               placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email"
+                               placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Choose a Service *</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select service</option>
+                            <option>Haircut & Styling</option>
+                            <option>Custom Tattoo</option>
+                            <option>Style Consultation</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Preferred Date *</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="message">Tell Us About Your Idea</label>
+                        <textarea id="message" name="message"
+                                  placeholder="Describe your preferred style or tattoo idea..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="button">
+                    Prepare Appointment Request ↗
+                </button>
+
+                <p class="form-message" id="formMessage"
+                   role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container footer-content">
+        <a class="logo" href="#home">NEW WAVES<span>.</span></a>
+
+        <p>
+            © <span id="year"></span> New Waves Hair & Tattoos.
+            All rights reserved.
+        </p>
+
+        <div class="footer-links">
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#booking">Contact</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile navigation
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+
+    menuButton.addEventListener("click", function () {
+        const isOpen = navLinks.classList.toggle("open");
+
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.textContent = isOpen ? "Close ✕" : "Menu ☰";
+    });
+
+    // Close mobile navigation after clicking a link
+    navLinks.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            navLinks.classList.remove("open");
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.textContent = "Menu ☰";
+        });
+    });
+
+    // Fill the booking service from the service cards
+    document.querySelectorAll("[data-service]").forEach(function (link) {
+        link.addEventListener("click", function () {
+            document.getElementById("service").value =
+                link.dataset.service;
+        });
+    });
+
+    // Prevent selecting a past appointment date
+    const dateInput = document.getElementById("date");
+    const today = new Date();
+    const localToday = [
+        today.getFullYear(),
+        String(today.getMonth() + 1).padStart(2, "0"),
+        String(today.getDate()).padStart(2, "0")
+    ].join("-");
+
+    dateInput.min = localToday;
+
+    // Display the current year
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+    // Basic appointment request form
+    document.getElementById("bookingForm").addEventListener(
+        "submit",
+        function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const service = document.getElementById("service").value;
+            const date = document.getElementById("date").value;
+            const message = document.getElementById("message").value.trim();
+
+            if (!name || !email || !service || !date) {
+                document.getElementById("formMessage").textContent =
+                    "Please complete all required fields.";
+                return;
+            }
+
+            const request = [
+                "New Waves Appointment Request",
+                "",
+                "Name: " + name,
+                "Email: " + email,
+                "Service: " + service,
+                "Preferred date: " + date,
+                "Details: " + (message || "Not provided")
+            ].join("\n");
+
+            document.getElementById("formMessage").textContent =
+                "Your request is ready. Choose how to send it.";
+
+            const oldButton = document.getElementById("sendEmailButton");
+            if (oldButton) {
+                oldButton.remove();
+            }
+
+            const emailButton = document.createElement("a");
+            emailButton.id = "sendEmailButton";
+            emailButton.className = "button";
+            emailButton.style.marginTop = "12px";
+            emailButton.textContent = "Open Email to Send Request";
+            emailButton.href =
+                "mailto:?subject=" +
+                encodeURIComponent("New Waves Appointment Request") +
+                "&body=" + encodeURIComponent(request);
+
+            document.getElementById("formMessage")
+                .insertAdjacentElement("afterend", emailButton);
+        }
+    );
+</script>
+
+</body>
+</html>
